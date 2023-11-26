@@ -1,3 +1,5 @@
+dataset/Classification_data
+
 .pytest_cache
 .ipynb_checkpoints
 .virtual_documents
@@ -11,5 +13,3 @@ __pycache__
 .idea
 *.pth
 *.egg-info
-
-dataset/Classification_data

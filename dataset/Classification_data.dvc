@@ -1,0 +1,6 @@
+outs:
+- md5: 120c4edce6ae099fc6e964307d1cf04e.dir
+  size: 258258913
+  nfiles: 17034
+  hash: md5
+  path: Classification_data

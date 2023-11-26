@@ -9,3 +9,4 @@ tensorboard>=2.14.0
 torchinfo>=1.8.0
 opencv-python-headless>=4.7.0.72
 clearml>=1.10.4
+dvc[ssh,s3]>=3.30.1

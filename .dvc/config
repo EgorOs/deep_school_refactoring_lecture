@@ -1,0 +1,6 @@
+[core]
+    analytics = false
+    autostage = true
+    remote = lecture
+['remote "lecture"']
+    url = s3://deepschool-lecture/dvc_cache
