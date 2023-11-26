@@ -1,0 +1,15 @@
+.pytest_cache
+.ipynb_checkpoints
+.virtual_documents
+.mypy_cache
+.venv
+
+# DS_Store (MacOS)
+.DS_Store
+
+__pycache__
+.idea
+*.pth
+*.egg-info
+
+dataset/Classification_data
