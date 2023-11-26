@@ -1,6 +1,7 @@
 --find-links https://download.pytorch.org/whl/torch_stable.html
 
+-r requirements-base.txt
+-r requirements-dev.txt
+
 torch==2.0.0+cpu
 torchvision>=0.15.0+cpu
-
--r requirements-base.txt

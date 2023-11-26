@@ -12,9 +12,16 @@ venv:
 	@echo 'Path to Python executable $(shell pwd)/$(PYTHON)'
 
 
+pre_commit_install:
+	@echo "=== Installing pre-commit ==="
+	$(PYTHON) -m pre_commit install
+
+
 install_all: venv
 	@echo "=== Installing common dependencies ==="
 	$(PYTHON) -m pip install -r requirements/requirements-$(DEVICE).txt
+
+	make pre_commit_install
 
 
 fetch_dataset_from_dropbox:
