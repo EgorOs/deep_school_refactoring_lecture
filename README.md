@@ -2,6 +2,8 @@
 
 Материалы к открытой лекции https://deepschool.ru/
 
+![example workflow](https://github.com/EgorOs/deep_school_refactoring_lecture/actions/workflows/main.yml/badge.svg)
+
 # Подготовка рабочего окружения
 
 ```bash
