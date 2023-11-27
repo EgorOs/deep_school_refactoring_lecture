@@ -4,6 +4,11 @@ import lightning
 from lightning import Trainer
 from lightning.pytorch.callbacks import LearningRateMonitor, ModelCheckpoint
 
+from src.callbacks.debug import LogModelSummary, VisualizeBatch
+from src.callbacks.experiment_tracking import (
+    ClearMLTracking,
+    LogConfusionMatrix,
+)
 from src.config import ExperimentConfig
 from src.constants import PROJECT_ROOT
 from src.datamodule import ClassificationDataModule
@@ -15,10 +20,14 @@ def train(cfg: ExperimentConfig):
     datamodule = ClassificationDataModule(cfg=cfg.data_config)
 
     callbacks = [
+        LogModelSummary(),
+        VisualizeBatch(every_n_epochs=5),
         LearningRateMonitor(logging_interval='step'),
         ModelCheckpoint(save_top_k=3, monitor='valid_f1', mode='max', every_n_epochs=1),
     ]
-
+    if cfg.track_in_clearml:
+        tracking_cb = ClearMLTracking(cfg, label_enumeration=datamodule.class_to_idx)
+        callbacks += [tracking_cb, LogConfusionMatrix(tracking_cb, datamodule.idx_to_class)]
     model = ClassificationLightningModule(class_to_idx=datamodule.class_to_idx)
 
     trainer = Trainer(

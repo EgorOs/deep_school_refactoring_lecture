@@ -5,6 +5,8 @@ import torch
 from numpy.typing import NDArray
 from torchvision.datasets import ImageFolder
 
+from src.transform import cv_image_to_tensor
+
 
 class ClassificationDataset(ImageFolder):
     def __getitem__(self, index: int) -> Tuple[torch.Tensor, int]:
@@ -12,7 +14,7 @@ class ClassificationDataset(ImageFolder):
         if self.transform is None:
             raise ValueError('At least np.ndarray to torch.Tensor transformation should be defined.')
         img = self.transform(image=img)['image']
-        return img, target
+        return cv_image_to_tensor(img), target
 
     def get_raw_data(self, index: int) -> Tuple[NDArray[int], int]:
         path, target = self.samples[index]
