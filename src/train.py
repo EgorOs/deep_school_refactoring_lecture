@@ -1,21 +1,33 @@
 import os
 
 import lightning
+from lightning import Trainer
+from lightning.pytorch.callbacks import LearningRateMonitor, ModelCheckpoint
 
 from src.config import ExperimentConfig
 from src.constants import PROJECT_ROOT
 from src.datamodule import ClassificationDataModule
-from src.logger import LOGGER
+from src.lightning_module import ClassificationLightningModule
 
 
 def train(cfg: ExperimentConfig):
     lightning.seed_everything(0)
     datamodule = ClassificationDataModule(cfg=cfg.data_config)
 
-    datamodule.prepare_data()
-    datamodule.setup(stage='fit')
-    img, labels = next(iter(datamodule.train_dataloader()))
-    LOGGER.debug('Got batch of images with shape %s', img.shape)
+    callbacks = [
+        LearningRateMonitor(logging_interval='step'),
+        ModelCheckpoint(save_top_k=3, monitor='valid_f1', mode='max', every_n_epochs=1),
+    ]
+
+    model = ClassificationLightningModule(class_to_idx=datamodule.class_to_idx)
+
+    trainer = Trainer(
+        **dict(cfg.trainer_config),
+        callbacks=callbacks,
+        overfit_batches=60,
+    )
+    trainer.fit(model=model, datamodule=datamodule)
+    trainer.test(model=model, datamodule=datamodule)
 
 
 if __name__ == '__main__':
