@@ -11,7 +11,7 @@ class _BaseValidatedConfig(BaseModel):
 
 
 class DataConfig(_BaseValidatedConfig):
-    dataset_name: str = 'ml_refactoring_lecture_dataset'
+    data_path: Path = Path('dataset') / 'Classification_data'
     img_size: Tuple[int, int] = (224, 224)
     batch_size: int = 32
     data_split: Tuple[float, ...] = (0.7, 0.2, 0.1)

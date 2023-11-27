@@ -13,7 +13,7 @@ trainer_config:
   default_root_dir: null
   detect_anomaly: false
 data_config:
-  dataset_name: ml_refactoring_lecture_dataset
+  data_path: 'dataset/Classification_data'
   img_size:
   - 64
   - 64

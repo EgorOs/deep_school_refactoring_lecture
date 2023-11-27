@@ -37,3 +37,12 @@ fetch_dataset_from_dropbox:
 # ========================= TRAINING ========================
 run_training:
 	$(PYTHON) -m src.train
+
+
+# ================== CONTINUOUS INTEGRATION =================
+ci_test:
+	$(PYTHON) -m pytest tests
+
+
+ci_static_code_analysis:
+	pre-commit run --all-files

@@ -48,7 +48,7 @@ class ClassificationDataModule(LightningDataModule):  # noqa: WPS214
 
     def prepare_data(self) -> None:
         dvc_repo = Repo(root_dir=str(PROJECT_ROOT))
-        self.data_path = PROJECT_ROOT / 'dataset' / 'Classification_data'
+        self.data_path = PROJECT_ROOT / self.cfg.data_path
 
         if self.data_path.is_dir():
             LOGGER.info('Found dataset at %s', self.data_path)
