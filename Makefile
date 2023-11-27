@@ -45,4 +45,4 @@ ci_test:
 
 
 ci_static_code_analysis:
-	pre-commit run --all-files
+	$(PYTHON) -m pre_commit run --all-files
