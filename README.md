@@ -11,3 +11,9 @@ make install_all
 ```bash
 make fetch_dataset_from_dropbox
 ```
+
+# Обучение модели
+
+```bash
+make run_training
+```

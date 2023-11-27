@@ -32,3 +32,8 @@ fetch_dataset_from_dropbox:
 	rm $(DATASET_FOLDER)/dataset.zip
 	find $(DATASET_FOLDER) -type f -name '.DS_Store' -delete
 	rm $(DATASET_FOLDER)/dataset.zip
+
+
+# ========================= TRAINING ========================
+run_training:
+	$(PYTHON) -m src.train
